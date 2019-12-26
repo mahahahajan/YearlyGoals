@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css?family=Dancing+Script');
+
+:root {
+    --size: 70px;
+    --modifier: 1.014;
+    --paddingTop: 10px;
+}
+
+body {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* styling paper */
+#paper {
+    height: 100vh;
+    position: relative;
+    margin: 20px auto;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: white;
+    box-shadow: 0px 0px 5px 0px #888;
+}
+/* styling red vertical line */
+#paper::before {
+    content: '';
+    width: 2px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 40px;
+    background-color: rgba(255, 0, 0, 0.6);
+}
+/* styling blue horizontal lines */
+#pattern {
+    height: 100%;
+    /* change white by negative amount to change sizing of lines */
+    background-image: repeating-linear-gradient(white 0px, white calc(var(--size) - 1px), teal var(--size));
+}
+li:before {
+    content: "\25A1";
+}
+li {
+    list-style-type: none;
+}
+
+/* styling text content */
+#content {
+    padding-top: var(--paddingTop);
+    padding-left: 56px;
+    padding-right: 16px;
+    line-height: calc(var(--size) * var(--modifier)) ;
+    /* figure out how to get size and then set to that */
+    font-family: 'Dancing Script', cursive;
+    font-size: var(--size);
+    letter-spacing: 1px;
+    word-spacing: 5px;
+}
+
+h3 {
+    font-size: 80px;
+    line-height: 50px;
+    padding: auto;
+    margin: auto;
+}
+
+.fab {
+    position: fixed;
+    bottom: 3%;
+    right: 3%;
+}
+
+.settings {
+    /* Change this to change the background color of the settings thing */
+    height: 60px;
+    width: 60px;
+    background-color: black;
+    border-radius: 50%;
+    display: block;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.settings i {
+    font-size: 22px;
+
+}
+
+.fab_buttons {
+    position: absolute;
+    width: 100%;
+    bottom: 120%;
+    text-align: center;
+
+}
+
+.fab_buttons a { 
+    /* Change the options that pop up */
+    display: block;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    text-decoration: none;
+    margin: 10px auto 0;
+    line-height: 1.15;
+    color: #fff;
+    opacity: 0;
+    visibility: hidden;
+    position: relative;
+    box-shadow: 0 0 5px 1px rgba(51, 51, 51, .3);
+    background-color: black;
+}
+
+.fab_buttons a:hover {
+    transform: scale(1.05);
+}
+
+.fab_buttons a:nth-child(1) {
+    transition: opacity .2s ease-in-out .35s, transform .15s ease-in-out;
+}
+
+.fab_buttons a:nth-child(2) {
+    transition: opacity .2s ease-in-out .25s, transform .15s ease-in-out;
+}
+
+.fab_buttons a:nth-child(3) {
+    transition: opacity .2s ease-in-out .2s, transform .15s ease-in-out;
+}
+
+.fab_buttons a:nth-child(4) {
+    transition: opacity .2s ease-in-out .15s, transform .15s ease-in-out;
+}
+
+.fab a i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.settingToggle {
+    -webkit-appearance: none;
+    position: absolute;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    z-index: 2;
+    transition: box-shadow .2s ease-in-out;
+    box-shadow: 0 3px 5px 1px rgba(51, 51, 51, .3);
+}
+
+.settingToggle:hover {
+    box-shadow: 0 3px 6px 2px rgba(51, 51, 51, .3);
+}
+
+.settingToggle:checked~.fab_buttons a {
+    opacity: 1;
+    visibility: visible;
+}
+
+#myInput {
+    line-height: var(--size);
+    height: var(--size);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px teal solid;
+    box-sizing: border-box;
+    background-color: rgba(0,0,0, 0);
+}
+
+input[type=text]:focus {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px teal solid;
+    outline: none;
+}
+
+.overlay {
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+
+    background-color: rgba(0,0,0,.9); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+}
+
+.passwordContainer{
+    height:100%;
+    width:100%;
+    margin:0;
+    display: flex;
+}
+.passwordForm{
+    color: white;
+    margin:auto;
+}
+#passwordInput{
+    text-align: center;
+    letter-spacing: 1px;
+    outline: none;
+    font-size: 15px;
+    opacity: 0.8;
+    border: 0.5px solid rgb(204, 204, 204);
+    border-radius: 3px;
+    width: 100%;
+    height: 45px;
+}
+.x{
+    position: fixed;
+    top: 0;
+    right: 3%;
+    font-size: 3rem;
+    color: white;
+}

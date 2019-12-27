@@ -141,6 +141,7 @@ $("#passwordInput").bind("enterKey", function (e) {
     var pass = readTextFile(value);
     if($("#passwordInput").val() == pass){
       authenticated = true;
+      alert("Signed in");
       $(".overlay").slideUp("slow");
     }
     

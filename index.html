@@ -32,12 +32,12 @@
           </div>
           <div id="content">
             <ul class="list">
-              <li> Learn how to do a Handstand </li>
+              <!-- <li> Learn how to do a Handstand </li>
               <li> Build a Pi-Hole</li>
               <li> Learn how to do a Kickflip </li>
               <li> Build a Smart Mirror </li>
               <li> Take and Finish NAND To Tetris</li>
-              <li> Do 10 pullups in 1 set </li>
+              <li> Do 10 pullups in 1 set </li> -->
               <!-- <li> <input type="text" id="myInput" placeholder="Enter new item here..."> </li> -->
             </ul>
           </div>
@@ -81,7 +81,29 @@
       </script>
       <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
       <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+      <!-- The core Firebase JS SDK is always required and must be listed first -->
+      <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-database.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-firestore.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-storage.js"></script>
+      
+      <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
 
+      <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+          apiKey: "AIzaSyBf4Ji6n1oonabsl9BY9Kbj_y22pjE-2no",
+          authDomain: "myyearlyresolutions.firebaseapp.com",
+          databaseURL: "https://myyearlyresolutions.firebaseio.com",
+          projectId: "myyearlyresolutions",
+          storageBucket: "myyearlyresolutions.appspot.com",
+          messagingSenderId: "1009775800087",
+          appId: "1:1009775800087:web:48cb3665e7181e28b99152"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+      </script>
       <script src="main.js"></script>
     </body>
 

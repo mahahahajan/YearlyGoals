@@ -4,6 +4,7 @@ var size = 70;
 var modifier = 1.014285714;
 var paddingTop = 10;
 var theme = 0;
+var authenticated = false;
 document.documentElement.style.setProperty('--size', size + 'px');
 document.documentElement.style.setProperty('--modifier', modifier);
 document.documentElement.style.setProperty('--paddingTop', paddingTop + 'px');
@@ -17,7 +18,20 @@ document.documentElement.style.setProperty('--paddingTop', paddingTop + 'px');
 // }
 
 // Click on a close button to hide the current list item
+//Populate page with the right tasks 
+$(document).ready(function(){
+  firebase.database().ref().on('value',(snap)=>{
+    var totalRecord =  snap.numChildren();
+    for(var i = 1; i < totalRecord+1; i++){
+      var taskObject = snap.child(i).val();
+      var task = Object.keys(taskObject)[0];
+      var taskDone = Object.values(taskObject)[0];
+      $(".list").append("<li>" + task + "</li>");
+      
+    }
+  });
 
+});
 
 
 var close = document.getElementsByClassName("close");
@@ -115,6 +129,45 @@ $("#edit").on('click', function () {
   $(".overlay").slideDown("slow");
 });
 
-$(".x").on('click', function(){
+$(".x").on('click', function () {
   $(".overlay").slideUp("slow");
 });
+
+$("#passwordInput").bind("enterKey", function (e) {
+  //do stuff here
+  var storageRef = firebase.storage().ref();
+  var thisRef = storageRef.child("resolutionPassword.txt");
+  thisRef.getDownloadURL().then(function (value) {
+    var pass = readTextFile(value);
+    if($("#passwordInput").val() == pass){
+      authenticated = true;
+      $(".overlay").slideUp("slow");
+    }
+    
+  });
+});
+
+$("#passwordInput").keyup(function (e) {
+  if (e.keyCode == 13) {
+    console.log("TEST");
+    $(this).trigger("enterKey");
+
+  }
+});
+
+function readTextFile(file) {
+  var allText; 
+  var rawFile = new XMLHttpRequest();
+  rawFile.open("GET", file, false);
+  rawFile.onreadystatechange = function () {
+    if (rawFile.readyState === 4) {
+      if (rawFile.status === 200 || rawFile.status == 0) {
+        allText = rawFile.responseText;
+        // console.log(allText);
+        
+      }
+    }
+  }
+  rawFile.send(null);
+  return allText;
+}
